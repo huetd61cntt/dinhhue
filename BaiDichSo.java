@@ -1,37 +1,42 @@
 package hue_61133694;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
- 
-public class BaiDichSo {
- 
-    public final static int SERVER_PORT = 9;
- 
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = null;
-        try {
-            System.out.println("Binding to port " + SERVER_PORT + ", please wait  ...");
-            serverSocket = new ServerSocket(SERVER_PORT);
-            System.out.println("Server started: " + serverSocket);
-            System.out.println("Waiting for a client ...");
-            while (true) {
-                try {
-                    Socket socket = serverSocket.accept();
-                    System.out.println("Client accepted: " + socket);
- 
-                    OutputStream os = socket.getOutputStream();
-                    InputStream is = socket.getInputStream();
-                    int ch = 0;
-                    while (true) {
-                        ch = is.read(); // Receive data from client
-                        if (ch == -1) {
-                            break;
-                        }
-                        os.write(ch); // Send the results to client
-                        socket.close();
-                    } catch (IOException e) {
-                        System.err.println(" Connection Error: " + e);
-                    }
-                }
+	public class BaiDichSo {
+
+
+private static ServerSocket serverSocket = null;
+
+public static void main(String[] args) throws IOException{
+
+// TODO code application logic here
+
+
+
+    DataOutputStream dos = null;
+
+    DataInputStream dis=null;
+
+    try {
+
+        serverSocket = new ServerSocket(8000);
+
+        System.out.print("Server đã được mở \n" );
+
+        Socket clientSocket = null;
+
+        clientSocket = serverSocket.accept();
+
+        dos=new DataOutputStream(clientSocket.getOutputStream());
+
+        dis=new DataInputStream(clientSocket.getInputStream());
+
+        String inline="";
+
+        while(true)
+
+        {
+
+         
