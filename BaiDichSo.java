@@ -30,3 +30,8 @@ public class BaiDichSo {
                             break;
                         }
                         os.write(ch); // Send the results to client
+                        socket.close();
+                    } catch (IOException e) {
+                        System.err.println(" Connection Error: " + e);
+                    }
+                }
