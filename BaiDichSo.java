@@ -1,42 +1,64 @@
 package hue_61133694;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-	public class BaiDichSo {
+		import java.io.DataInputStream;
 
+		import java.io.DataOutputStream;
 
-private static ServerSocket serverSocket = null;
+		import java.io.IOException;
 
-public static void main(String[] args) throws IOException{
+		import java.net.Socket;
 
-// TODO code application logic here
+		import java.util.Scanner;
 
 
 
-    DataOutputStream dos = null;
+		public class BaiDichSo {
 
-    DataInputStream dis=null;
+		{
 
-    try {
+			private static ServerSocket serverSocket = null;
 
-        serverSocket = new ServerSocket(8000);
+			public static void main(String[] args) throws IOException{
 
-        System.out.print("Server đã được mở \n" );
+			// TODO code application logic here
 
-        Socket clientSocket = null;
 
-        clientSocket = serverSocket.accept();
 
-        dos=new DataOutputStream(clientSocket.getOutputStream());
+			    DataOutputStream dos = null;
 
-        dis=new DataInputStream(clientSocket.getInputStream());
+			    DataInputStream dis=null;
 
-        String inline="";
+			    try {
 
-        while(true)
+			        serverSocket = new ServerSocket(8000);
 
-        {
+			        System.out.print("Server đã được mở \n" );
 
-         
+			        Socket clientSocket = null;
+
+			        clientSocket = serverSocket.accept();
+
+			        dos=new DataOutputStream(clientSocket.getOutputStream());
+
+			        dis=new DataInputStream(clientSocket.getInputStream());
+
+			        String inline="";
+
+			        while(true)
+
+			        {
+
+			            inline = dis.readUTF();
+
+			            char ch[]=inline.toCharArray();
+
+			            if(Character.isDigit(ch[0]))
+
+			                {
+
+			                int i=Integer.parseInt(inline);
+
+			                switch(i)
+
+			                {
+
+			                    
