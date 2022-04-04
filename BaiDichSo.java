@@ -1,64 +1,102 @@
 package hue_61133694;
-		import java.io.DataInputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+public class BaiDichSo {
 
-		import java.io.DataOutputStream;
+				private static ServerSocket serverSocket = null;
 
-		import java.io.IOException;
+				public static void main(String[] args) throws IOException{
 
-		import java.net.Socket;
+				// TODO code application logic here
 
-		import java.util.Scanner;
+				    DataOutputStream dos = null;
 
+				    DataInputStream dis=null;
 
+				    try {
 
-		public class BaiDichSo {
+				        serverSocket = new ServerSocket(8000);
 
-		{
+				        System.out.print("Server đã được mở \n" );
 
-			private static ServerSocket serverSocket = null;
+				        Socket clientSocket = null;
 
-			public static void main(String[] args) throws IOException{
+				        clientSocket = serverSocket.accept();
 
-			// TODO code application logic here
+				        dos=new DataOutputStream(clientSocket.getOutputStream());
 
+				        dis=new DataInputStream(clientSocket.getInputStream());
 
+				        String inline="";
 
-			    DataOutputStream dos = null;
+				        while(true)
 
-			    DataInputStream dis=null;
+				        {
 
-			    try {
+				            inline = dis.readUTF();
 
-			        serverSocket = new ServerSocket(8000);
+				            char ch[]=inline.toCharArray();
 
-			        System.out.print("Server đã được mở \n" );
+				            if(Character.isDigit(ch[0]))
 
-			        Socket clientSocket = null;
+				                {
 
-			        clientSocket = serverSocket.accept();
+				                int i=Integer.parseInt(inline);
 
-			        dos=new DataOutputStream(clientSocket.getOutputStream());
+				                switch(i)
 
-			        dis=new DataInputStream(clientSocket.getInputStream());
+				                {
 
-			        String inline="";
+				                    case 0:inline="Không";break;
 
-			        while(true)
+				                    case 1:inline="Một";break;
 
-			        {
+				                    case 2:inline="Hai";break;
 
-			            inline = dis.readUTF();
+				                    case 3:inline="Ba";break;
 
-			            char ch[]=inline.toCharArray();
+				                    case 4:inline="Bốn";break;
 
-			            if(Character.isDigit(ch[0]))
+				                    case 5:inline="Năm";break;
 
-			                {
+				                    case 6:inline="Sáu";break;
 
-			                int i=Integer.parseInt(inline);
+				                    case 7:inline="Bảy";break;
 
-			                switch(i)
+				                    case 8:inline="Tám";break;
 
-			                {
+				                    case 9:inline="Chín";break;
 
-			                    
+				                }
+
+				                dos.writeUTF(inline);
+
+				            }
+
+				            else
+
+				                dos.writeUTF("Không phải số nguyên");
+
+				        }
+
+				    }
+
+				    catch(Exception e) {
+
+				        dos.close();
+
+				        serverSocket.close();
+
+				        dis.close();
+
+				        System.out.print(e.getMessage());
+
+				    }
+
+				}
+
+				} 
+
