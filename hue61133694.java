@@ -12,8 +12,6 @@ import java.util.Scanner;
 
 public class hue61133694 {
 
-{
-
     public static void main(String[] args) throws IOException
 
     {
